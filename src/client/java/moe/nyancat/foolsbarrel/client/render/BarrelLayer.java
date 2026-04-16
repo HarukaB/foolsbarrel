@@ -4,13 +4,15 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import moe.nyancat.foolsbarrel.BarrelUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.renderer.block.MovingBlockRenderState;
+import net.minecraft.client.renderer.block.BlockModelRenderState;
+import net.minecraft.client.renderer.block.BlockModelResolver;
+import net.minecraft.client.renderer.block.model.BlockDisplayContext;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.client.model.EntityModel;
-import net.minecraft.core.BlockPos;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -18,8 +20,13 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class BarrelLayer<S extends LivingEntityRenderState, M extends EntityModel<? super S>> extends RenderLayer<S, M> {
 
+    private final BlockModelResolver blockModelResolver;
+    private final BlockModelRenderState blockModelRenderState = new BlockModelRenderState();
+    private final BlockDisplayContext displayContext = BlockDisplayContext.create();
+
     public BarrelLayer(RenderLayerParent<S, M> renderer) {
         super(renderer);
+        this.blockModelResolver = new BlockModelResolver(Minecraft.getInstance().getModelManager());
     }
 
     @Override
@@ -48,20 +55,10 @@ public class BarrelLayer<S extends LivingEntityRenderState, M extends EntityMode
         // No manual flip needed — entity renderer's scale(-1,-1,1) naturally
         // inverts the barrel so the bottom faces up (correct for barrel-on-head)
 
-        var mc = Minecraft.getInstance();
-        if (mc.level != null) {
-            BlockPos entityPos = BlockPos.containing(state.x, state.y, state.z);
-
-            MovingBlockRenderState movingState = new MovingBlockRenderState();
-            movingState.blockState = blockState;
-            movingState.blockPos = entityPos;
-            movingState.randomSeedPos = entityPos;
-            movingState.biome = mc.level.getBiome(entityPos);
-            movingState.cardinalLighting = mc.level.cardinalLighting();
-            movingState.lightEngine = mc.level.getLightEngine();
-
-            collector.submitMovingBlock(poseStack, movingState);
-        }
+        // Use BlockModelRenderState + BlockModelResolver (same as BlockDisplayRenderer)
+        // This passes packedLight directly, matching how the reference 22w13ob rendered blocks
+        blockModelResolver.update(blockModelRenderState, blockState, displayContext);
+        blockModelRenderState.submit(poseStack, collector, packedLight, OverlayTexture.NO_OVERLAY, 0);
 
         poseStack.popPose();
     }
