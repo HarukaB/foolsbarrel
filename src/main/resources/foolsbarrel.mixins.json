@@ -3,8 +3,10 @@
 	"package": "moe.nyancat.foolsbarrel.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
-		"PlayerMixin",
+		"LivingEntityMixin",
+		"LookAtPlayerGoalMixin",
 		"MobMixin",
+		"PlayerMixin",
 		"SwellGoalMixin"
 	],
 	"injectors": {
