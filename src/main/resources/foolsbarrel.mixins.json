@@ -1,13 +1,14 @@
 {
-	"required": true,
-	"package": "moe.nyancat.foolsbarrel.mixin",
-	"compatibilityLevel": "JAVA_25",
-	"mixins": [
-		"PlayerMixin",
-		"MobMixin",
-		"SwellGoalMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "moe.nyancat.foolsbarrel.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "MobMixin",
+    "PlayerMixin",
+    "SwellGoalMixin",
+    "WardenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }
