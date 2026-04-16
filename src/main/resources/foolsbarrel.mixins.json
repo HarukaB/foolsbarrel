@@ -4,11 +4,8 @@
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
 		"PlayerMixin",
-		"MeleeAttackGoalMixin",
-		"RangedAttackGoalMixin",
-		"RangedBowAttackGoalMixin",
-		"SwellGoalMixin",
-		"LeapAtTargetGoalMixin"
+		"MobMixin",
+		"SwellGoalMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

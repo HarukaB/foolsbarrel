@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
@@ -30,6 +31,14 @@ public abstract class PlayerMixin {
                     self.getY(),
                     Math.floor(self.getZ()) + 0.5
             );
+        }
+    }
+
+    @Inject(method = "canBeSeenAsEnemy", at = @At("HEAD"), cancellable = true)
+    private void foolsbarrel$hideInBarrel(CallbackInfoReturnable<Boolean> cir) {
+        Player self = (Player) (Object) this;
+        if (BarrelUtil.isHiddenInBarrel(self)) {
+            cir.setReturnValue(false);
         }
     }
 
