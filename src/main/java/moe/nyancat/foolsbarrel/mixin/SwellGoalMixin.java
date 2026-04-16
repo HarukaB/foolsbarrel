@@ -29,6 +29,7 @@ public abstract class SwellGoalMixin {
     @Inject(method = "tick", at = @At("HEAD"), cancellable = true)
     private void foolsbarrel$stopSwell(CallbackInfo ci) {
         if (this.target != null && BarrelUtil.isHiddenInBarrel(this.target)) {
+            this.creeper.setTarget(null);
             this.creeper.setSwellDir(-1);
             ci.cancel();
         }
