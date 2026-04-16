@@ -5,7 +5,6 @@
 	"client": [
 		"AvatarRendererMixin",
 		"HumanoidModelMixin",
-		"LocalPlayerMixin",
 		"CameraMixin",
 		"LivingEntityRendererMixin",
 		"CustomHeadLayerMixin"

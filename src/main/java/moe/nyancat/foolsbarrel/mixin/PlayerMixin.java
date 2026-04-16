@@ -21,6 +21,18 @@ public abstract class PlayerMixin {
         this.foolsbarrel$oldPose = ((Player) (Object) this).getPose();
     }
 
+    @Inject(method = "aiStep", at = @At("TAIL"))
+    private void foolsbarrel$snapPosition(CallbackInfo ci) {
+        Player self = (Player) (Object) this;
+        if (BarrelUtil.isWearingBarrel(self) && self.isCrouching()) {
+            self.setPos(
+                    Math.floor(self.getX()) + 0.5,
+                    self.getY(),
+                    Math.floor(self.getZ()) + 0.5
+            );
+        }
+    }
+
     @Inject(method = "updatePlayerPose", at = @At("TAIL"))
     private void foolsbarrel$playBarrelSounds(CallbackInfo ci) {
         Player self = (Player) (Object) this;
