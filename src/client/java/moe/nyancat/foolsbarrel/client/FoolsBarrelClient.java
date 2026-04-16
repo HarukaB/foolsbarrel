@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.player.AvatarRenderer;
 import net.minecraft.resources.Identifier;
 
-public class NerdsBarrelClient implements ClientModInitializer {
+public class FoolsBarrelClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         // Register BarrelLayer on player and humanoid mob renderers

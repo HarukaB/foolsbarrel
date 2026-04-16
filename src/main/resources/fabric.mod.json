@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"id": "foolsbarrel",
 	"version": "${version}",
-	"name": "Nerd's Barrel",
+	"name": "Fool's Barrel",
 	"description": "Port the barrel-on-head feature from 22w13oneBlockAtATime snapshot. Wear a barrel, hide in plain sight!",
 	"authors": [
 		"NerdsCat"
@@ -13,10 +13,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"moe.nyancat.foolsbarrel.NerdsBarrel"
+			"moe.nyancat.foolsbarrel.FoolsBarrel"
 		],
 		"client": [
-			"moe.nyancat.foolsbarrel.client.NerdsBarrelClient"
+			"moe.nyancat.foolsbarrel.client.FoolsBarrelClient"
 		]
 	},
 	"mixins": [

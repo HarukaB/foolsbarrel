@@ -1,4 +1,4 @@
-# Nerd&#39;s Barrel
+# Fool's Barrel
 
 ## Setup
 
