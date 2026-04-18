@@ -1,0 +1,15 @@
+{
+	"required": true,
+	"package": "moe.nyancat.foolsbarrel.client.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": [
+		"AvatarRendererMixin",
+		"HumanoidModelMixin",
+		"CameraMixin",
+		"LivingEntityRendererMixin",
+		"CustomHeadLayerMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

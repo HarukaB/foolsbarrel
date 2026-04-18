@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "foolsbarrel",
+	"version": "${version}",
+	"name": "Fool's Barrel",
+	"description": "Port the barrel-on-head feature from 22w13oneBlockAtATime snapshot. Wear a barrel, hide in plain sight!",
+	"authors": [
+		"momo(HarukaB,aka HarukaC on modrinth)",
+		"diaoyugan"
+	],
+	"contact": {},
+	"license": "GPL-3.0",
+	"icon": "assets/foolsbarrel/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"moe.nyancat.foolsbarrel.FoolsBarrel"
+		],
+		"client": [
+			"moe.nyancat.foolsbarrel.client.FoolsBarrelClient"
+		]
+	},
+	"mixins": [
+		"foolsbarrel.mixins.json",
+		{
+			"config": "foolsbarrel.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
